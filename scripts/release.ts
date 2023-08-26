@@ -8,7 +8,7 @@ fs.rmSync("dist", { recursive: true, force: true });
 execFileSync("pnpm", ["run", "checks"]);
 execFileSync("pnpm", ["build"]);
 execFileSync("pnpm", ["version", args[0]]);
-execFileSync("tsx", ["./index.ts"]);
+execFileSync("changenog");
 execFileSync("git", ["add", "."]);
 
 const pkg = await import("../package.json");
