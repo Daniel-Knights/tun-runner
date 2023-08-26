@@ -1,0 +1,60 @@
+{
+  "name": "tun-runner",
+  "version": "0.2.0",
+  "description": "Interactive script runner.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "checks": "pnpm lint && pnpm typecheck",
+    "tun": "tsx ./index.ts t",
+    "release:patch": "tsx ./scripts/release patch",
+    "release:minor": "tsx ./scripts/release minor",
+    "release:major": "tsx ./scripts/release major"
+  },
+  "author": "Donk",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Daniel-Knights/tun"
+  },
+  "bugs": {
+    "url": "https://github.com/Daniel-Knights/tun/issues"
+  },
+  "keywords": [
+    "cli",
+    "script",
+    "runner",
+    "utility"
+  ],
+  "type": "module",
+  "bin": {
+    "tun": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/node": "^20.5.4",
+    "@types/prompts": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "changenog": "^0.2.0",
+    "eslint": "^8.47.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-define-config": "^1.23.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.0.2",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.2",
+    "tsx": "^3.12.7",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  }
+}
