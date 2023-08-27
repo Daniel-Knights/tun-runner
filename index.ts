@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-import { execFile } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { stderr, stdin, stdout } from "node:process";
 import prompts from "prompts";
 
 type JSONValue =
@@ -49,13 +48,12 @@ function getPackageManager(): "npm" | "pnpm" | "yarn" {
 const pm = getPackageManager();
 
 function runScript(script: string): void {
-  process.env.TUN_RUNNER = "true";
-
-  const childProcess = execFile(pm, ["run", script]);
-
-  childProcess.stdout?.pipe(stdout);
-  childProcess.stdin?.pipe(stdin);
-  childProcess.stderr?.pipe(stderr);
+  spawnSync(pm, ["run", script], {
+    stdio: "inherit",
+    env: {
+      TUN_RUNNER: "true",
+    },
+  });
 }
 
 const pkgContents = fs.readFileSync(path.join(root, "package.json"));
