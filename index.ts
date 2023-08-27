@@ -23,7 +23,6 @@ const args = process.argv.slice(2);
 const input = args[0];
 
 if (args.includes("--nested")) {
-  console.log("kpokpok");
   throw new Error(`${LOG_PREFIX} nested tun calls are not supported`);
 }
 
