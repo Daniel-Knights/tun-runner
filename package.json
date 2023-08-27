@@ -1,6 +1,6 @@
 {
   "name": "tun-runner",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Interactive script runner.",
   "main": "dist/index.js",
   "scripts": {
