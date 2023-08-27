@@ -49,7 +49,7 @@ const pm = getPackageManager();
 
 function runScript(script: string): void {
   spawnSync(pm, ["run", script], {
-    stdio: "inherit",
+    stdio: "inherit", // Retain log styles
     env: {
       TUN_RUNNER: "true",
     },
