@@ -1,3 +1,8 @@
+## [0.0.3](https://github.com/Daniel-Knights/tun-runner.git/compare/v0.0.2...v0.0.3) (27/08/2023, 13:19:51)
+
+- ci(release): rename exec function to run ([1d2b231](https://github.com/Daniel-Knights/tun-runner.git/commit/1d2b231a869b60f515fee5f33492bf33c3dc64bb))
+- fix(logs): remove test log ([454244a](https://github.com/Daniel-Knights/tun-runner.git/commit/454244aa049304d4374adac9de1e0f2e8e526f0c))
+
 ## [0.0.2](https://github.com/Daniel-Knights/tun-runner.git/compare/v0.0.1...v0.0.2) (27/08/2023, 12:57:59)
 
 - ci(release): use spawn, fix changenog call ([b078f14](https://github.com/Daniel-Knights/tun-runner.git/commit/b078f146872f1e8e6fb1b40ff7f6a7701af8d631))
