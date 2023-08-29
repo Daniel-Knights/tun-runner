@@ -1,3 +1,10 @@
+## [0.1.0](https://github.com/Daniel-Knights/tun-runner/compare/v0.0.3...v0.1.0) (29/08/2023, 17:36:27)
+
+- feat: walk file tree to find nearest package manager ([a704160](https://github.com/Daniel-Knights/tun-runner/commit/a704160716e9b83d82c39f395ce9d1e26e8468ce))
+- chore(deps): bump changenog ([db756aa](https://github.com/Daniel-Knights/tun-runner/commit/db756aa29b0d02c524678fa0b7b5934e12ba4663))
+- chore: bump changenog ([3ebe133](https://github.com/Daniel-Knights/tun-runner/commit/3ebe133ad044b4ff5368c081a73880de532e71cd))
+- docs(changelog): v0.0.3 ([1d5deea](https://github.com/Daniel-Knights/tun-runner/commit/1d5deea756970691fa5a1c1931b3a6ba864d5da5))
+
 ## [0.0.3](https://github.com/Daniel-Knights/tun-runner.git/compare/v0.0.2...v0.0.3) (27/08/2023, 13:19:51)
 
 - ci(release): rename exec function to run ([1d2b231](https://github.com/Daniel-Knights/tun-runner.git/commit/1d2b231a869b60f515fee5f33492bf33c3dc64bb))
