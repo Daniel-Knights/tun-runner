@@ -26,8 +26,8 @@ devDependencies:
     specifier: ^6.4.1
     version: 6.4.1(eslint@8.48.0)(typescript@5.2.2)
   changenog:
-    specifier: ^0.3.0
-    version: 0.3.0
+    specifier: ^0.4.1
+    version: 0.4.1
   eslint:
     specifier: ^8.47.0
     version: 8.48.0
@@ -860,8 +860,8 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /changenog@0.3.0:
-    resolution: {integrity: sha512-1WM16Qi93rpzItDJ9So97SEgo2c8me8o3wGV4b+rnzNjwBEuDi04jAUaU1fEMKKJTmvWXTRun2sFggZdOw3p0g==}
+  /changenog@0.4.1:
+    resolution: {integrity: sha512-/L5Ljr/gbpDM6mLM9lW7gMiRprRZTjvaFh+vlaCxDzhJkRf/q7tYWL88VdeKm8OCbqOhyKJxfT9BwhuJ4T8o5g==}
     hasBin: true
     dependencies:
       gitlog: 4.0.8
