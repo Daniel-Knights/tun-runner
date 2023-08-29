@@ -30,18 +30,31 @@ function isJsonObj(val: unknown): val is Record<string, JSONValue> {
   return !!val && typeof val === "object" && !Array.isArray(val);
 }
 
-function getPackageManager(): "npm" | "pnpm" | "yarn" {
-  if (fs.existsSync(path.join(root, "package-lock.json"))) {
+const pkgContents = fs.readFileSync(path.join(root, "package.json"));
+const pkg: JSONValue = JSON.parse(pkgContents.toString());
+
+if (!isJsonObj(pkg) || !isJsonObj(pkg.scripts)) {
+  throw new Error(`${LOG_PREFIX} unable to parse scripts`);
+}
+
+function getPackageManager(callCount = 0): "npm" | "pnpm" | "yarn" {
+  if (callCount > 20) {
+    throw new Error(`${LOG_PREFIX} unable to find package manager`);
+  }
+
+  const currentDir = path.resolve(root, callCount > 0 ? "../".repeat(callCount) : ".");
+
+  if (fs.existsSync(path.join(currentDir, "package-lock.json"))) {
     return "npm";
   }
-  if (fs.existsSync(path.join(root, "pnpm-lock.yaml"))) {
+  if (fs.existsSync(path.join(currentDir, "pnpm-lock.yaml"))) {
     return "pnpm";
   }
-  if (fs.existsSync(path.join(root, "yarn.lock"))) {
+  if (fs.existsSync(path.join(currentDir, "yarn.lock"))) {
     return "yarn";
   }
 
-  throw new Error(`${LOG_PREFIX} no package manager found`);
+  return getPackageManager(callCount + 1);
 }
 
 const pm = getPackageManager();
@@ -53,13 +66,6 @@ function runScript(script: string): void {
       TUN_RUNNER: "true",
     },
   });
-}
-
-const pkgContents = fs.readFileSync(path.join(root, "package.json"));
-const pkg: JSONValue = JSON.parse(pkgContents.toString());
-
-if (!isJsonObj(pkg) || !isJsonObj(pkg.scripts)) {
-  throw new Error(`${LOG_PREFIX} unable to parse scripts`);
 }
 
 const { scripts } = pkg;
