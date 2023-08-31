@@ -1,3 +1,8 @@
+## [0.2.1](https://github.com/Daniel-Knights/tun-runner/compare/v0.2.0...v0.2.1) (31/08/2023)
+
+- fix: shebang ([c3ad92c](https://github.com/Daniel-Knights/tun-runner/commit/c3ad92c1a8780acd24170b3ab0da1aa7281e6202))
+- docs(changelog): v0.2.0 ([0643c9b](https://github.com/Daniel-Knights/tun-runner/commit/0643c9bc1614647cc1661dd3ddf96c7f0c7d05de))
+
 ## [0.2.0](https://github.com/Daniel-Knights/tun-runner/compare/v0.1.0...v0.2.0) (31/08/2023)
 
 - feat: check available commands if no lock file ([b44c276](https://github.com/Daniel-Knights/tun-runner/commit/b44c2763b68e18e246906ed9eb8f3f691d8bb364))
