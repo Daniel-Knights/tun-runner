@@ -1,3 +1,12 @@
+## [0.2.0](https://github.com/Daniel-Knights/tun-runner/compare/v0.1.0...v0.2.0) (31/08/2023)
+
+- feat: check available commands if no lock file ([b44c276](https://github.com/Daniel-Knights/tun-runner/commit/b44c2763b68e18e246906ed9eb8f3f691d8bb364))
+- chore: bump deps ([e194570](https://github.com/Daniel-Knights/tun-runner/commit/e194570ec2c1d9dbed9bc72b398140336075daf5))
+- chore(deps): bump changenog ([1abb40d](https://github.com/Daniel-Knights/tun-runner/commit/1abb40d46d7c7c134faf8eb12579f2a92074e4e1))
+- docs(changelog): regenerate from scratch ([b4d1d7b](https://github.com/Daniel-Knights/tun-runner/commit/b4d1d7b5080fc3200a002441edf0483052696b0f))
+- chore(deps): bump changenog ([11aaa96](https://github.com/Daniel-Knights/tun-runner/commit/11aaa96d92f76c6dac0cd16d317dee4995563db4))
+- docs(changelog): v0.1.0 ([89c2fe9](https://github.com/Daniel-Knights/tun-runner/commit/89c2fe92295f5faf6f0dde4acc3f2c27597324a4))
+
 ## [0.1.0](https://github.com/Daniel-Knights/tun-runner/compare/v0.0.3...v0.1.0) (29/08/2023)
 
 - feat: walk file tree to find nearest package manager ([a704160](https://github.com/Daniel-Knights/tun-runner/commit/a704160716e9b83d82c39f395ce9d1e26e8468ce))
