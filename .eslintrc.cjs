@@ -27,6 +27,7 @@ module.exports = defineConfig({
     "no-new": "off",
     "no-restricted-syntax": "off",
     "no-cond-assign": ["error", "except-parens"],
+    "no-shadow": "off",
     "prettier/prettier": ["error", { endOfLine: "auto" }],
     "arrow-body-style": "off",
     "consistent-return": "off",
@@ -45,6 +46,7 @@ module.exports = defineConfig({
       { disallowTypeAnnotations: false },
     ],
     "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/no-shadow": "error",
 
     "n/shebang": "off",
     "n/no-process-exit": "off",

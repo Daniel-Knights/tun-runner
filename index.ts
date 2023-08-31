@@ -1,5 +1,5 @@
-#!/usr/bin/env node
-import { spawnSync } from "node:child_process";
+#!/usr/bin/env nodeprettiern
+import { execSync, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import prompts from "prompts";
@@ -12,10 +12,24 @@ type JSONValue =
   | JSONValue[]
   | { [key: string]: JSONValue };
 
+enum PackageManager {
+  NPM = "npm",
+  PNPM = "pnpm",
+  Yarn = "yarn",
+}
+
 const LOG_PREFIX = "\x1b[34m[tun]\x1b[0m";
 
+function log(message: string): void {
+  console.log(`${LOG_PREFIX} ${message}`);
+}
+
+function throwError(message: string): never {
+  throw new Error(`${LOG_PREFIX} ${message}`);
+}
+
 if (process.env.TUN_RUNNER === "true") {
-  throw new Error(`${LOG_PREFIX} nested tun calls are not allowed`);
+  throwError("nested tun calls are not allowed");
 }
 
 const root = process.cwd();
@@ -23,7 +37,7 @@ const args = process.argv.slice(2);
 const input = args[0];
 
 if (args.includes("--nested")) {
-  throw new Error(`${LOG_PREFIX} nested tun calls are not supported`);
+  throwError(`nested tun calls are not supported`);
 }
 
 function isJsonObj(val: unknown): val is Record<string, JSONValue> {
@@ -34,30 +48,54 @@ const pkgContents = fs.readFileSync(path.join(root, "package.json"));
 const pkg: JSONValue = JSON.parse(pkgContents.toString());
 
 if (!isJsonObj(pkg) || !isJsonObj(pkg.scripts)) {
-  throw new Error(`${LOG_PREFIX} unable to parse scripts`);
+  throwError("unable to parse scripts");
 }
 
-function getPackageManager(callCount = 0): "npm" | "pnpm" | "yarn" {
-  if (callCount > 20) {
-    throw new Error(`${LOG_PREFIX} unable to find package manager`);
+async function getPackageManager(callCount = 0): Promise<PackageManager> {
+  if (callCount > 10) {
+    log("unable to find lock file, checking available commands...");
+
+    for (const pm of Object.values(PackageManager)) {
+      try {
+        execSync(`${pm} -v`);
+
+        // eslint-disable-next-line no-await-in-loop
+        const answers = await prompts([
+          {
+            name: "pm",
+            type: "confirm",
+            message: `Use ${pm}?`,
+            initial: true,
+          },
+        ]);
+
+        if (answers.pm) {
+          return pm;
+        }
+      } catch {
+        if (pm === PackageManager.Yarn) {
+          throwError("unable to find package manager");
+        }
+      }
+    }
   }
 
   const currentDir = path.resolve(root, callCount > 0 ? "../".repeat(callCount) : ".");
 
   if (fs.existsSync(path.join(currentDir, "package-lock.json"))) {
-    return "npm";
+    return PackageManager.NPM;
   }
   if (fs.existsSync(path.join(currentDir, "pnpm-lock.yaml"))) {
-    return "pnpm";
+    return PackageManager.PNPM;
   }
   if (fs.existsSync(path.join(currentDir, "yarn.lock"))) {
-    return "yarn";
+    return PackageManager.Yarn;
   }
 
   return getPackageManager(callCount + 1);
 }
 
-const pm = getPackageManager();
+const pm = await getPackageManager();
 
 function runScript(script: string): void {
   spawnSync(pm, ["run", script], {
@@ -79,7 +117,7 @@ if (scriptKeys.includes(input)) {
     : scriptKeys;
 
   if (matchingScripts.length === 0) {
-    throw new Error(`${LOG_PREFIX} no matching scripts: ${input}`);
+    throwError(`no matching scripts: ${input}`);
   }
 
   const answers = await prompts([
